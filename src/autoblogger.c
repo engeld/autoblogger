@@ -3,25 +3,25 @@
 
 int main(void)
 {
-    char        item[], status;
+    char        item[] = "", status;
     FILE        *fp;
 
-    if((fp = fopen("P:\\links.txt", "r+")) == NULL) {
+    if((fp = fopen("./links.txt", "r+")) == NULL) {
         printf("No such file\n");
         exit(1);
     }
 
     while(1) {
-        int ret = fscanf(fp, "%s %c", item, &status);
-        if(ret == 2) {
-            printf("\n%s \t %c", item, status);
+        int ret = fscanf(fp, "%s", item);
+        if(ret == 1) {
+            printf("\n%s", item);
         } else if(errno != 0) {
             perror("scanf: ");
             break;
         } else if(ret == EOF) {
             break;
         } else {
-            printf("No match!\n");
+            printf("No match!, retcode: %i\n", ret);
         }
     }
     printf("\n");
