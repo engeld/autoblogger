@@ -1,0 +1,13 @@
+links
+=====
+
+2014-11-25
+----------
+#programming
+http://www.catb.org/esr/faqs/hacking-howto.html
+http://www.hanselman.com/blog/HowDoYouOrganizeYourCode.aspx
+
+2014-11-24
+----------
+#stuff
+http://google.ch
