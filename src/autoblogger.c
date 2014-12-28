@@ -21,9 +21,10 @@ int main( int argc, char *argv[] )
     perror( "Unable to open the file" );
     exit( EXIT_FAILURE );
   }
-  
-  /* depending on the string, handle the printing different */
-  /* may use a switch-case? */
+
+  OutputHTMLHeader();
+
+  /* loop through input file and process (depending on content) */
   fread( buf, 1, sizeof( buf ), in);
   printf( "%s\n", buf );
 
