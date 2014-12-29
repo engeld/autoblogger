@@ -7,7 +7,7 @@
 int main( int argc, char *argv[] )
 {
   FILE    *in;
-  int     ch;
+  int     character;
   int     counter;
 
   /* Handle arguments */
@@ -26,10 +26,10 @@ int main( int argc, char *argv[] )
   OutputHTMLHeader();
 
   /* loop through input file and process (depending on content) */
-  for(counter = 0; (ch=getc(in)) != EOF; counter++){
-    /* printf( "%c", ch); */
+  for(counter = 0; (character=getc(in)) != EOF; counter++){
+    /* printf( "%c", character); */
 
-    switch( ch ){
+    switch( character ){
     case '=':  /* all characters until the first equal sign belongs to the title */
       printf( "<h1>" );
       /* empty the char-bucket */
