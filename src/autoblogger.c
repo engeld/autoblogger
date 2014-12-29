@@ -6,8 +6,9 @@
 
 int main( int argc, char *argv[] )
 {
-  FILE        *in;
-  char        buf[BUFSIZ];
+  FILE    *in;
+  int     ch;
+  int     counter;
 
   /* Handle arguments */
   if( argc != 2 ){
@@ -25,10 +26,36 @@ int main( int argc, char *argv[] )
   OutputHTMLHeader();
 
   /* loop through input file and process (depending on content) */
-  fread( buf, 1, sizeof( buf ), in);
-  printf( "%s\n", buf );
+  for(counter = 0; (ch=getc(in)) != EOF; counter++){
+    /* printf( "%c", ch); */
+
+    switch( ch ){
+    case '=':  /* all characters until the first equal sign belongs to the title */
+      printf( "<h1>" );
+      /* empty the char-bucket */
+      printf( "</h1>\n" );
+      break;
+    case '-':
+      printf( "<h2>" );
+      /* empty the char-bucket */
+      printf( "</h2>\n" );
+      break;
+    case '\n': /* 2 newlines => new section */
+      if( getc(in) == '\n'){
+        printf( "<p>" );
+        /* empty the bucket (loop through the links in it) */
+        printf( "</p>\n" );
+      }
+      break;
+    default:
+      /* printf( "%c", ch); */
+      /* add char to bucket */
+      break;
+    }
+  }
 
   fclose( in );
-  
+
+  OutputHTMLFooter();
   return EXIT_SUCCESS;
 }
